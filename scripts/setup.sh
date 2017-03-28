@@ -17,6 +17,13 @@ dpkg-reconfigure locales
 # install utilities
 apt-get -y install vim git zip bzip2 fontconfig curl language-pack-en
 
+# @Trifon - Additional utilities (MidnightCommander, wget)
+apt-get -y install mc wget
+
+# @Trifon - Time zone(UTC+2)
+ln -fs /usr/share/zoneinfo/Europe/Sofia /etc/localtime
+dpkg-reconfigure -f noninteractive tzdata
+
 # install Java 8
 apt-get install default-jdk
 
