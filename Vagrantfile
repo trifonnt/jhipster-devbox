@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
         vb.customize ["modifyvm", :id, "--vram", 128]
         vb.customize ["modifyvm", :id, "--cpus", 4]
         vb.customize ["modifyvm", :id, "--accelerate3d", "on"]
-        vb.customize ['modifyvm', :id, '--clipboard', 'bidirectional']
-        vb.customize ['modifyvm', :id, '--draganddrop', 'bidirectional']
+        vb.customize ["modifyvm", :id, "--clipboard", "bidirectional"]
+        vb.customize ["modifyvm", :id, "--draganddrop", "bidirectional"]
     end
 end
