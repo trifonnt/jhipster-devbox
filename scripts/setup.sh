@@ -100,8 +100,9 @@ wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 apt-get install -y guake
 cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
 
+# @Trifon
 # install jhipster-devbox
-git clone git://github.com/jhipster/jhipster-devbox.git /home/vagrant/jhipster-devbox
+git clone git://github.com/trifonnt/vagrant-jhipster-devbox.git /home/vagrant/jhipster-devbox
 chmod +x /home/vagrant/jhipster-devbox/tools/*.sh
 
 # install zsh
@@ -130,8 +131,24 @@ sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagr
 # disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
 sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
 
-#install IDEA community edition
+# install IDEA community edition
 su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
+
+# @Trifon - Install Eclipse STS IDE
+wget http://download.springsource.com/release/STS/3.8.4.RELEASE/dist/e4.6/spring-tool-suite-3.8.4.RELEASE-e4.6.3-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz
+mkdir /home/vagrant/.local/share/umake/ide/spring-sts
+tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts --strip-components=1
+
+echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Version=1.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Type=Application" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Name=Spring STS-3.8.4" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/STS\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Comment=Spring STS IDE" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Terminal=false" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+
 
 # increase Inotify limit (see https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit)
 echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/60-inotify.conf
