@@ -41,8 +41,10 @@ dpkg-reconfigure -f noninteractive tzdata
 ## Install Java 8 - Oracle
 echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections 
 echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
+add-apt-repository ppa:webupd8team/java
+apt-get update
 apt-get -y install oracle-java8-installer
-#echo 'JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64' >> /etc/environment
+echo 'JAVA_HOME=/usr/lib/jvm/java-8-oracle' >> /etc/environment
 
 
 # install node.js
