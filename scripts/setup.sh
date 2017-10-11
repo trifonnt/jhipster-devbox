@@ -186,6 +186,30 @@ echo "Comment=Spring STS IDE" >> /home/vagrant/.local/share/applications/spring-
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 
+# Install JavaFX Scene Builder
+wget http://download.gluonhq.com/scenebuilder/8.4.0/scenebuilder-8.4.0-all.jar
+mkdir -p /home/vagrant/.local/share/umake/ide/javafx-scenebuilder/
+mv ~/scenebuilder-8.4.0-all.jar /home/vagrant/.local/share/umake/ide/javafx-scenebuilder/
+
+echo '[Desktop Entry]
+Version=1.0
+Type=Application
+Name=JavaFX-SceneBuilder-8.4.0
+Icon=/home/vagrant/.local/share/umake/ide/javafx-scenebuilder/icon.xpm
+Exec=java -jar /home/vagrant/.local/share/umake/ide/javafx-scenebuilder/scenebuilder-8.4.0-all.jar %U
+Terminal=false
+Comment=JavaFX Scene Builder
+Categories=Development;IDE;
+MimeType=text/html;text/xml;application/xhtml_xml;
+Actions=NewWindow;NewPrivateWindow;
+[Desktop Action NewWindow]
+Name=New Window
+Exec=java -jar /home/vagrant/.local/share/umake/ide/javafx-scenebuilder/scenebuilder-8.4.0-all.jar' > /home/vagrant/Desktop/SceneBuilder-8.4.0.desktop
+chmod +x /home/vagrant/Desktop/SceneBuilder-8.4.0.desktop
+su -c 'mkdir -p /home/vagrant/.local/share/applications/' vagrant
+su -c 'ln -s /home/vagrant/Desktop/SceneBuilder-8.4.0.desktop /home/vagrant/.local/share/applications/SceneBuilder-8.4.0.desktop' vagrant
+
+
 # Install Eclipse IDE - via umake
 # umake ide eclipse --remove
 #su -c 'umake ide eclipse /home/vagrant/.local/share/umake/ide/eclipse' vagrant
@@ -218,6 +242,7 @@ Exec=/home/vagrant/.local/share/umake/ide/eclipse/4.7-jee/eclipse' > /home/vagra
 chmod +x /home/vagrant/Desktop/eclipse-4.7-jee.desktop
 su -c 'mkdir -p /home/vagrant/.local/share/applications/' vagrant
 su -c 'ln -s /home/vagrant/Desktop/eclipse-4.7-jee.desktop /home/vagrant/.local/share/applications/eclipse-4.7-jee.desktop' vagrant
+
 
 # increase Inotify limit (see https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit)
 echo "fs.inotify.max_user_watches = 524288" > /etc/sysctl.d/60-inotify.conf
