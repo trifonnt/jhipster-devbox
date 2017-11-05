@@ -167,6 +167,9 @@ usermod -aG docker vagrant
 # fix ownership of home
 chown -R vagrant:vagrant /home/vagrant/
 
+# Enable reading of shared folders by "vagrant" user in VirtualBox VM
+adduser vagrant vboxsf
+
 # clean the box
 apt-get -y autoclean
 apt-get -y clean
