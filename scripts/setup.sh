@@ -27,25 +27,25 @@ dpkg-reconfigure -f noninteractive tzdata
 # install Java 8
 apt-get install default-jdk
 
-# install node.js
-curl -sL https://deb.nodesource.com/setup_6.x | bash -
-apt-get install -y nodejs unzip python g++ build-essential
+## install node.js
+#curl -sL https://deb.nodesource.com/setup_6.x | bash -
+#apt-get install -y nodejs unzip python g++ build-essential
 
-# update npm
-npm install -g npm
+## update npm
+#npm install -g npm
 
-# install yarn
-npm install -g yarn
-su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
+## install yarn
+#npm install -g yarn
+#su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
 
-# install yeoman grunt bower gulp
-su -c "yarn global add yo bower gulp" vagrant
+## install yeoman grunt bower gulp
+#su -c "yarn global add yo bower gulp" vagrant
 
-# install JHipster
-su -c "yarn global add generator-jhipster@4.5.6" vagrant
+## install JHipster
+#su -c "yarn global add generator-jhipster@4.5.6" vagrant
 
-# install JHipster UML
-su -c "yarn global add jhipster-uml@2.0.3" vagrant
+## install JHipster UML
+#su -c "yarn global add jhipster-uml@2.0.3" vagrant
 
 ################################################################################
 # Install the graphical environment
@@ -93,8 +93,8 @@ apt-get install -y mysql-workbench
 # install PgAdmin
 apt-get install -y pgadmin3
 
-# install Heroku toolbelt
-wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+## install Heroku toolbelt
+#wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 
 # install Guake
 apt-get install -y guake
@@ -122,29 +122,30 @@ echo 'export PATH="$PATH:/usr/bin:/home/vagrant/.yarn-global/bin:/home/vagrant/.
 # change user to vagrant
 chown -R vagrant:vagrant /home/vagrant/.zshrc /home/vagrant/.oh-my-zsh
 
-# install Visual Studio Code
-su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
+## install Visual Studio Code
+#su -c 'umake ide visual-studio-code /home/vagrant/.local/share/umake/ide/visual-studio-code --accept-license' vagrant
 
-# fix links (see https://github.com/ubuntu/ubuntu-make/issues/343)
-sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
+## fix links (see https://github.com/ubuntu/ubuntu-make/issues/343)
+#sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagrant/.local/share/applications/visual-studio-code.desktop
 
-# disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
-sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
+## disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
+#sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
 
-# install IDEA community edition
-su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
+## install IDEA community edition
+#su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 
 # @Trifon - Install Eclipse STS IDE
-wget http://download.springsource.com/release/STS/3.8.4.RELEASE/dist/e4.6/spring-tool-suite-3.8.4.RELEASE-e4.6.3-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz
+     
+wget http://download.springsource.com/release/STS/3.9.4.RELEASE/dist/e4.7/spring-tool-suite-3.9.4.RELEASE-e4.7.3a-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-3.9.4.tar.gz
 mkdir /home/vagrant/.local/share/umake/ide/spring-sts
-tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts --strip-components=1
+tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-3.9.4.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts --strip-components=1
 
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Name=Spring STS-3.8.4" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/STS\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Name=Spring STS-3.9.4" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.9.4.RELEASE/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.9.4.RELEASE/STS\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Comment=Spring STS IDE" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/spring-sts.desktop
