@@ -1,6 +1,6 @@
 Vagrant.configure("2") do |config|
     config.vm.box = "bento/ubuntu-16.04"
-    config.vm.hostname = "jhipster-devbox-nemesis"
+    config.vm.hostname = "jhipster-devbox-zkoss"
     config.vm.provision :shell, :path => "scripts/setup.sh"
     config.vm.network :forwarded_port, host: 8080, guest: 8080
     config.vm.network :forwarded_port, host: 9000, guest: 9000
