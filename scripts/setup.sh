@@ -25,7 +25,7 @@ ln -fs /usr/share/zoneinfo/Europe/Sofia /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
 
 # install Java 8
-apt-get install default-jdk
+apt-get -y install default-jdk
 
 ## install node.js
 #curl -sL https://deb.nodesource.com/setup_6.x | bash -
