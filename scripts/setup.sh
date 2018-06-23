@@ -135,11 +135,13 @@ chown -R vagrant:vagrant /home/vagrant/.zshrc /home/vagrant/.oh-my-zsh
 #su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 
 # @Trifon - Install Eclipse STS IDE
-     
+
+mkdir -p /home/vagrant/.local/share/umake/ide/spring-sts
 wget http://download.springsource.com/release/STS/3.9.4.RELEASE/dist/e4.7/spring-tool-suite-3.9.4.RELEASE-e4.7.3a-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-3.9.4.tar.gz
-mkdir /home/vagrant/.local/share/umake/ide/spring-sts
+
 tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-3.9.4.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts --strip-components=1
 
+mkdir -p /home/vagrant/.local/share/applications/
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/spring-sts.desktop
