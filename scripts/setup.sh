@@ -128,20 +128,20 @@ sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/shar
 # install IDEA community edition
 su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 
-# @Trifon - Install Eclipse STS IDE
-wget http://download.springsource.com/release/STS/3.8.4.RELEASE/dist/e4.6/spring-tool-suite-3.8.4.RELEASE-e4.6.3-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz
-mkdir /home/vagrant/.local/share/umake/ide/spring-sts
-tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts --strip-components=1
+# @Trifon - Install Eclipse DSL IDE
+wget http://mirror.dkm.cz/eclipse/technology/epp/downloads/release/photon/R/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz
+mkdir -p /home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0
+tar -zxvf /home/vagrant/.local/share/umake/ide/eclipse-dsl-photon-R-linux-gtk-x86_64.tar.gz -C /home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0 --strip-components=1
 
-echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Version=1.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Type=Application" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Name=Spring STS-3.8.4" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/STS\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Comment=Spring STS IDE" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Terminal=false" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Version=1.0" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Type=Application" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Name=Eclipse DSL-4.8.0" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0/icon.xpm" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/eclipse-dsl/4.8.0/eclipse\" %f" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Comment=Eclipse DSL IDE" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
+echo "Terminal=false" >> /home/vagrant/.local/share/applications/eclipse-dsl.desktop
 
 
 # increase Inotify limit (see https://confluence.jetbrains.com/display/IDEADEV/Inotify+Watches+Limit)
