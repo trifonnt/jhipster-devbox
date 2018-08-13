@@ -128,6 +128,11 @@ sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/shar
 # install IDEA community edition
 su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 
+# @Trifon - Sublime Editor
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
+apt install sublime-text
+
 # @Trifon - Install Eclipse STS IDE
 wget http://download.springsource.com/release/STS/3.8.4.RELEASE/dist/e4.6/spring-tool-suite-3.8.4.RELEASE-e4.6.3-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz
 mkdir /home/vagrant/.local/share/umake/ide/spring-sts
