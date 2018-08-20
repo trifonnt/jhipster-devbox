@@ -24,6 +24,9 @@ apt-get -y install mc wget
 ln -fs /usr/share/zoneinfo/Europe/Sofia /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
 
+# @Trifon - NTP
+apt-get install ntp
+
 # install Java 8
 apt-get install default-jdk
 
