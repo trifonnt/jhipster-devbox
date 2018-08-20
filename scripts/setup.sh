@@ -24,6 +24,9 @@ apt-get -y install mc wget meld gedit
 ln -fs /usr/share/zoneinfo/Europe/Sofia /etc/localtime
 dpkg-reconfigure -f noninteractive tzdata
 
+# @Trifon - NTP
+apt-get install ntp
+
 # Install Java 7
 #add-apt-repository ppa:openjdk-r/ppa  
 #apt-get update   
