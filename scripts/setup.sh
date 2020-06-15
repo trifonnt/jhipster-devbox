@@ -1,18 +1,15 @@
 #!/bin/sh
 
 # update the system
+export DEBIAN_FRONTEND=noninteractive
+apt-mark hold keyboard-configuration
 apt-get update
-apt-get upgrade
+apt-get -y upgrade
+apt-mark unhold keyboard-configuration
 
 ################################################################################
 # Install the mandatory tools
 ################################################################################
-
-export LANGUAGE='en_US.UTF-8'
-export LANG='en_US.UTF-8'
-export LC_ALL='en_US.UTF-8'
-locale-gen en_US.UTF-8
-dpkg-reconfigure locales
 
 # install utilities
 apt-get -y install vim git zip bzip2 fontconfig curl language-pack-en
@@ -28,27 +25,30 @@ dpkg-reconfigure -f noninteractive tzdata
 apt-get install ntp
 
 # install Java 8
-apt-get install openjdk-8-jdk
+#apt-get install openjdk-8-jdk
 
-# install node.js
-curl -sL https://deb.nodesource.com/setup_8.x | bash -
-apt-get install -y nodejs unzip python g++ build-essential
+# install Java 11
+apt-get -y install openjdk-11-jdk
 
-# update npm
+# install Node.js
+wget https://nodejs.org/dist/v12.16.1/node-v12.16.1-linux-x64.tar.gz -O /tmp/node.tar.gz
+tar -C /usr/local --strip-components 1 -xzf /tmp/node.tar.gz
+
+# update NPM
 npm install -g npm
 
-# install yarn
+# install Yarn
 npm install -g yarn
 su -c "yarn config set prefix /home/vagrant/.yarn-global" vagrant
 
-# install yeoman grunt bower gulp
-su -c "yarn global add yo" vagrant
+# install Yeoman
+npm install -g yo
 
 # install JHipster
-su -c "yarn global add generator-jhipster@5.1.0" vagrant
+npm install -g generator-jhipster@6.9.1
 
 # install JHipster UML
-su -c "yarn global add jhipster-uml@2.0.3" vagrant
+npm install -g jhipster-uml@2.0.3
 
 ################################################################################
 # Install the graphical environment
@@ -128,8 +128,9 @@ sed -i -e 's/visual-studio-code\/code/visual-studio-code\/bin\/code/' /home/vagr
 # disable GPU (see https://code.visualstudio.com/docs/supporting/faq#_vs-code-main-window-is-blank)
 sed -i -e 's/"$CLI" "$@"/"$CLI" "--disable-gpu" "$@"/' /home/vagrant/.local/share/umake/ide/visual-studio-code/bin/code
 
+# @Trifon
 # install IDEA community edition
-su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
+#su -c 'umake ide idea /home/vagrant/.local/share/umake/ide/idea' vagrant
 
 # @Trifon - Sublime Editor
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -137,16 +138,16 @@ apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 apt install sublime-text
 
 # @Trifon - Install Eclipse STS IDE
-wget http://download.springsource.com/release/STS/3.8.4.RELEASE/dist/e4.6/spring-tool-suite-3.8.4.RELEASE-e4.6.3-linux-gtk-x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz
+wget https://download.springsource.com/release/STS4/4.6.2.RELEASE/dist/e4.15/spring-tool-suite-4-4.6.2.RELEASE-e4.15.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.6.2.tar.gz
 mkdir /home/vagrant/.local/share/umake/ide/spring-sts
-tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-3.8.4.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts --strip-components=1
+tar -zxvf /home/vagrant/.local/share/umake/ide/spring-sts-4.6.2.tar.gz -C /home/vagrant/.local/share/umake/ide/spring-sts --strip-components=1
 
 echo "[Desktop Entry]" > /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Version=1.0" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Type=Application" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Name=Spring STS-3.8.4" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
-echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/sts-3.8.4.RELEASE/STS\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Name=Spring STS-4.6.2" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Icon=/home/vagrant/.local/share/umake/ide/spring-sts/sts-4.6.2.RELEASE/icon.xpm" >> /home/vagrant/.local/share/applications/spring-sts.desktop
+echo "Exec=\"/home/vagrant/.local/share/umake/ide/spring-sts/sts-4.6.2.RELEASE/STS\" %f" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Comment=Spring STS IDE" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Categories=Development;IDE;" >> /home/vagrant/.local/share/applications/spring-sts.desktop
 echo "Terminal=false" >> /home/vagrant/.local/share/applications/spring-sts.desktop
@@ -160,7 +161,7 @@ sysctl -p --system
 curl -sL https://get.docker.io/ | sh
 
 # install latest docker-compose
-curl -L "$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | head -n 4 | grep Linux | grep -v sha256 | cut -d '"' -f 4)" > /usr/local/bin/docker-compose
+curl -L "$(curl -s https://api.github.com/repos/docker/compose/releases | grep browser_download_url | grep Linux | grep -v sha256 | head -n 1 | cut -d '"' -f 4)" > /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
 
 # configure docker group (docker commands can be launched without sudo)
