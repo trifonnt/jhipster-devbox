@@ -1,5 +1,5 @@
 Vagrant.configure("2") do |config|
-    config.vm.box = "ubuntu/bionic64" # old: bento/ubuntu-18.10
+    config.vm.box = "bento/ubuntu-20.04" # old: ubuntu/bionic64, bento/ubuntu-18.10
     config.vm.hostname = "jhipster-devbox-6.9.1"
     config.vm.provision :shell, :path => "scripts/setup.sh"
     config.vm.network :forwarded_port, host: 8080, guest: 8080
