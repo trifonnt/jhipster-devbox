@@ -66,6 +66,9 @@ echo 'allowed_users=anybody' > /etc/X11/Xwrapper.config
 # install Ubuntu desktop and VirtualBox guest tools
 apt-get install -y xubuntu-desktop virtualbox-guest-dkms virtualbox-guest-utils virtualbox-guest-x11
 
+# @Trifon - https://techpiezo.com/linux/switch-display-manager-in-ubuntu-20-04/
+apt install -y lightdm
+
 # remove light-locker (see https://github.com/jhipster/jhipster-devbox/issues/54)
 apt-get remove -y light-locker --purge
 
