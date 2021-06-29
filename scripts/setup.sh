@@ -140,6 +140,11 @@ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 apt-add-repository "deb https://download.sublimetext.com/ apt/stable/"
 apt install sublime-text
 
+# @Trifon - Install PyCharm
+snap download pycharm-community
+snap ack pycharm-community_240.assert
+snap install pycharm-community_240.snap --classic
+
 # @Trifon - Install Eclipse STS IDE
 wget https://download.springsource.com/release/STS4/4.6.2.RELEASE/dist/e4.15/spring-tool-suite-4-4.6.2.RELEASE-e4.15.0-linux.gtk.x86_64.tar.gz -O /home/vagrant/.local/share/umake/ide/spring-sts-4.6.2.tar.gz
 mkdir /home/vagrant/.local/share/umake/ide/spring-sts
