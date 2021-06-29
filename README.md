@@ -59,7 +59,7 @@ You can then tune your installation, by following the next sections on customizi
 
 This generates a new "development box" directly from this repository.
 
-- Clone this repository: `git clone https://github.com/jhipster/jhipster-devbox.git`
+- Clone this repository: `git clone --branch master https://github.com/trifonnt/vagrant-jhipster-devbox.git trifonnt-jhipster-devbox-master-6.9.1`
 - It is wise to use a tag to have a stable version: the JHipster DevBox tags are the same as the JHipster Generator tags, so using the DevBox v3.2.0 also means using the generator v3.2.0
 - Run `vagrant up`
 
